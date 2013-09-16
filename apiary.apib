@@ -1,0 +1,44 @@
+HOST: http://localhost:5984/
+
+--- Apache CouchDB ---
+
+---
+Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
+---
+
+--
+Welcome
+Find the Apache CouchDB version you're running, and other metadata about this instance.
+--
+
+Welcome from Apache CouchDB
+GET /
+< 200
+< Content-Type: application/json
+{ "couchdb": "Welcome", "uuid": "...uuid...", "version": "1.4.0", "vendor": { "version": "1.4.0-1", "name": "Homebrew" } }
+
+-- Databases --
+
+Get database metadata
+GET /{db}
+< 200
+< Content-Type: application/json
+{"db_name":"example","doc_count":0,"doc_del_count":0,"update_seq":0,"purge_seq":0,"compact_running":false,"disk_size":79,"data_size":0,"instance_start_time":"1379015586374134","disk_format_version":6,"committed_update_seq":0}
+
+Create a database
+PUT /{db}
+< 201
+{ "ok": true }
+
+Delete a database
+DELETE /{db}
+< 200
+{ "ok": true }
+
+-- Documents --
+
+Retrieve a document.
+Response is the full document you submitted plus the `_id` and `_rev` keys (at least).
+GET /{db}/{doc_id}
+< 200
+{ "_id": "{doc_id}", "_rev": "1-...hash...", "name": "Anna", "age": 89, "gender": "female" }
