@@ -1,44 +1,122 @@
-HOST: http://localhost:5984/
+FORMAT: 1A
+# Apache CouchDB
 
---- Apache CouchDB ---
+# Apache CouchDB API Root [http://localhost:5984/]
 
----
-Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
----
+## Welcome [/]
+Returns the welcome message and version information
 
---
-Welcome
-Find the Apache CouchDB version you're running, and other metadata about this instance.
---
+### GET
 
-Welcome from Apache CouchDB
-GET /
-< 200
-< Content-Type: application/json
-{ "couchdb": "Welcome", "uuid": "...uuid...", "version": "1.4.0", "vendor": { "version": "1.4.0-1", "name": "Homebrew" } }
++ Response 200
 
--- Databases --
+    ```
+    {
+      "couchdb": "Welcome",
+      "uuid": "85fb71bf700c17267fef77535820e371",
+      "vendor": {
+          "name": "The Apache Software Foundation",
+          "version": "1.5.0"
+      },
+      "version": "1.5.0"
+    }
+    ```
 
-Get database metadata
-GET /{db}
-< 200
-< Content-Type: application/json
-{"db_name":"example","doc_count":0,"doc_del_count":0,"update_seq":0,"purge_seq":0,"compact_running":false,"disk_size":79,"data_size":0,"instance_start_time":"1379015586374134","disk_format_version":6,"committed_update_seq":0}
+## Active Tasks [/_active_tasks]
+Obtains a list of the tasks running in the server
 
-Create a database
-PUT /{db}
-< 201
-{ "ok": true }
+### GET
 
-Delete a database
-DELETE /{db}
-< 200
-{ "ok": true }
++ Response 200
 
--- Documents --
+    ```
+    [
+        {
+            "changes_done": 64438,
+            "database": "mailbox",
+            "pid": "<0.12986.1>",
+            "progress": 84,
+            "started_on": 1376116576,
+            "total_changes": 76215,
+            "type": "database_compaction",
+            "updated_on": 1376116619
+        },
+        {
+            "changes_done": 14443,
+            "database": "mailbox",
+            "design_document": "c9753817b3ba7c674d92361f24f59b9f",
+            "pid": "<0.10461.3>",
+            "progress": 18,
+            "started_on": 1376116621,
+            "total_changes": 76215,
+            "type": "indexer",
+            "updated_on": 1376116650
+        },
+        {
+            "changes_done": 5454,
+            "database": "mailbox",
+            "design_document": "_design/meta",
+            "pid": "<0.6838.4>",
+            "progress": 7,
+            "started_on": 1376116632,
+            "total_changes": 76215,
+            "type": "indexer",
+            "updated_on": 1376116651
+        },
+        {
+            "checkpointed_source_seq": 68585,
+            "continuous": false,
+            "doc_id": null,
+            "doc_write_failures": 0,
+            "docs_read": 4524,
+            "docs_written": 4524,
+            "missing_revisions_found": 4524,
+            "pid": "<0.1538.5>",
+            "progress": 44,
+            "replication_id": "9bc1727d74d49d9e157e260bb8bbd1d5",
+            "revisions_checked": 4524,
+            "source": "mailbox",
+            "source_seq": 154419,
+            "started_on": 1376116644,
+            "target": "http://mailsrv:5984/mailbox",
+            "type": "replication",
+            "updated_on": 1376116651
+        }
+    ]
+    ```
+
+## Databases [/{db}]
+Get database metadata.
+
+### Retrieve Database Metadata [GET]
+
++ Response 200
+
+    ```
+    {"db_name":"example","doc_count":0,"doc_del_count":0,"update_seq":0,"purge_seq":0,"compact_running":false,"disk_size":79,"data_size":0,"instance_start_time":"1379015586374134","disk_format_version":6,"committed_update_seq":0}
+    ```
+
+### Create a database [PUT]
+
++ Response 201
+
+    ```
+    { "ok": true }
+    ```
+
+### Delete a database [DELETE]
+
++ Response 200
+
+    ```
+    { "ok": true }
+    ```
+
+## Documents [/{db}/{doc_id}]
 
 Retrieve a document.
 Response is the full document you submitted plus the `_id` and `_rev` keys (at least).
-GET /{db}/{doc_id}
-< 200
-{ "_id": "{doc_id}", "_rev": "1-...hash...", "name": "Anna", "age": 89, "gender": "female" }
+
++ Response 200
+
+    { "_id": "{doc_id}", "_rev": "1-...hash...", "name": "Anna", "age": 89, "gender": "female" }
