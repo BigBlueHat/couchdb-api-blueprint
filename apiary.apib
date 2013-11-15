@@ -7,7 +7,6 @@ FORMAT: 1A
 Returns the welcome message and version information
 
 ### GET
-
 + Response 200
 
     ```
@@ -26,7 +25,6 @@ Returns the welcome message and version information
 Obtains a list of the tasks running in the server
 
 ### GET
-
 + Response 200
 
     ```
@@ -89,7 +87,6 @@ Obtains a list of the tasks running in the server
 Get database metadata.
 
 ### Retrieve Database Metadata [GET]
-
 + Response 200
 
     ```
@@ -97,7 +94,6 @@ Get database metadata.
     ```
 
 ### Create a database [PUT]
-
 + Response 201
 
     ```
@@ -105,7 +101,6 @@ Get database metadata.
     ```
 
 ### Delete a database [DELETE]
-
 + Response 200
 
     ```
@@ -117,6 +112,9 @@ Get database metadata.
 Retrieve a document.
 Response is the full document you submitted plus the `_id` and `_rev` keys (at least).
 
+### GET
 + Response 200
 
+    ```
     { "_id": "{doc_id}", "_rev": "1-...hash...", "name": "Anna", "age": 89, "gender": "female" }
+    ```
