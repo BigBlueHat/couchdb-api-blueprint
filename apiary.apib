@@ -12,19 +12,18 @@ server, including a welcome message and the version of the server.
 
 ### GET
 + Response 200 (application/json)
-    + Body
 
-        ```
-        {
-          "couchdb": "Welcome",
-          "uuid": "85fb71bf700c17267fef77535820e371",
-          "vendor": {
-              "name": "The Apache Software Foundation",
-              "version": "1.5.0"
-          },
+    ```
+    {
+      "couchdb": "Welcome",
+      "uuid": "85fb71bf700c17267fef77535820e371",
+      "vendor": {
+          "name": "The Apache Software Foundation",
           "version": "1.5.0"
-        }
-        ```
+      },
+      "version": "1.5.0"
+    }
+    ```
 
 ## Active Tasks [/_active_tasks]
 List of running tasks, including the task type, name, status and
@@ -34,63 +33,62 @@ operation type set of response object fields might be different.
 
 ### GET
 + Response 200 (application/json)
-    + Body
 
-        ```
-        [
-            {
-                "changes_done": 64438,
-                "database": "mailbox",
-                "pid": "<0.12986.1>",
-                "progress": 84,
-                "started_on": 1376116576,
-                "total_changes": 76215,
-                "type": "database_compaction",
-                "updated_on": 1376116619
-            },
-            {
-                "changes_done": 14443,
-                "database": "mailbox",
-                "design_document": "c9753817b3ba7c674d92361f24f59b9f",
-                "pid": "<0.10461.3>",
-                "progress": 18,
-                "started_on": 1376116621,
-                "total_changes": 76215,
-                "type": "indexer",
-                "updated_on": 1376116650
-            },
-            {
-                "changes_done": 5454,
-                "database": "mailbox",
-                "design_document": "_design/meta",
-                "pid": "<0.6838.4>",
-                "progress": 7,
-                "started_on": 1376116632,
-                "total_changes": 76215,
-                "type": "indexer",
-                "updated_on": 1376116651
-            },
-            {
-                "checkpointed_source_seq": 68585,
-                "continuous": false,
-                "doc_id": null,
-                "doc_write_failures": 0,
-                "docs_read": 4524,
-                "docs_written": 4524,
-                "missing_revisions_found": 4524,
-                "pid": "<0.1538.5>",
-                "progress": 44,
-                "replication_id": "9bc1727d74d49d9e157e260bb8bbd1d5",
-                "revisions_checked": 4524,
-                "source": "mailbox",
-                "source_seq": 154419,
-                "started_on": 1376116644,
-                "target": "http://mailsrv:5984/mailbox",
-                "type": "replication",
-                "updated_on": 1376116651
-            }
-        ]
-        ```
+    ```
+    [
+        {
+            "changes_done": 64438,
+            "database": "mailbox",
+            "pid": "<0.12986.1>",
+            "progress": 84,
+            "started_on": 1376116576,
+            "total_changes": 76215,
+            "type": "database_compaction",
+            "updated_on": 1376116619
+        },
+        {
+            "changes_done": 14443,
+            "database": "mailbox",
+            "design_document": "c9753817b3ba7c674d92361f24f59b9f",
+            "pid": "<0.10461.3>",
+            "progress": 18,
+            "started_on": 1376116621,
+            "total_changes": 76215,
+            "type": "indexer",
+            "updated_on": 1376116650
+        },
+        {
+            "changes_done": 5454,
+            "database": "mailbox",
+            "design_document": "_design/meta",
+            "pid": "<0.6838.4>",
+            "progress": 7,
+            "started_on": 1376116632,
+            "total_changes": 76215,
+            "type": "indexer",
+            "updated_on": 1376116651
+        },
+        {
+            "checkpointed_source_seq": 68585,
+            "continuous": false,
+            "doc_id": null,
+            "doc_write_failures": 0,
+            "docs_read": 4524,
+            "docs_written": 4524,
+            "missing_revisions_found": 4524,
+            "pid": "<0.1538.5>",
+            "progress": 44,
+            "replication_id": "9bc1727d74d49d9e157e260bb8bbd1d5",
+            "revisions_checked": 4524,
+            "source": "mailbox",
+            "source_seq": 154419,
+            "started_on": 1376116644,
+            "target": "http://mailsrv:5984/mailbox",
+            "type": "replication",
+            "updated_on": 1376116651
+        }
+    ]
+    ```
 
 ## Databases [/{db}]
 Get database metadata.
@@ -101,6 +99,7 @@ Get database metadata.
     ```
     {"db_name":"example","doc_count":0,"doc_del_count":0,"update_seq":0,"purge_seq":0,"compact_running":false,"disk_size":79,"data_size":0,"instance_start_time":"1379015586374134","disk_format_version":6,"committed_update_seq":0}
     ```
+
 + Response 404
 
 ### Create a database [PUT]
@@ -109,6 +108,7 @@ Get database metadata.
     ```
     { "ok": true }
     ```
+
 + Response 400 (application/json)
   
     ```
@@ -119,7 +119,7 @@ Get database metadata.
     ```
 
 + Response 401
-+ Response 412
++ Response 412 (application/json)
 
     ```
     {
