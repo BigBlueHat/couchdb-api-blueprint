@@ -11,14 +11,7 @@ instance. The response is a JSON structure containing information about the
 server, including a welcome message and the version of the server.
 
 ### GET
-+ Response 200
-
-    + Headers
-
-        ```
-        Content-Type: application/json
-        ````
-
++ Response 200 (application/json)
     + Body
 
         ```
@@ -40,14 +33,7 @@ with each task being described with a single object. Depending on
 operation type set of response object fields might be different.
 
 ### GET
-+ Response 200
-
-    + Headers
-
-        ```
-        Content-Type: application/json
-        ```
-
++ Response 200 (application/json)
     + Body
 
         ```
@@ -110,21 +96,21 @@ operation type set of response object fields might be different.
 Get database metadata.
 
 ### Retrieve Database Metadata [GET]
-+ Response 200
++ Response 200 (application/json)
 
     ```
     {"db_name":"example","doc_count":0,"doc_del_count":0,"update_seq":0,"purge_seq":0,"compact_running":false,"disk_size":79,"data_size":0,"instance_start_time":"1379015586374134","disk_format_version":6,"committed_update_seq":0}
     ```
 
 ### Create a database [PUT]
-+ Response 201
++ Response 201 (application/json)
 
     ```
     { "ok": true }
     ```
 
 ### Delete a database [DELETE]
-+ Response 200
++ Response 200 (application/json)
 
     ```
     { "ok": true }
@@ -136,7 +122,7 @@ Retrieve a document.
 Response is the full document you submitted plus the `_id` and `_rev` keys (at least).
 
 ### GET
-+ Response 200
++ Response 200 (application/json)
 
     ```
     { "_id": "{doc_id}", "_rev": "1-...hash...", "name": "Anna", "age": 89, "gender": "female" }
