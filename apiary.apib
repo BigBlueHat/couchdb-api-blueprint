@@ -139,6 +139,35 @@ Get database metadata.
 + Response 401
 + Response 404
 
+### Create a document in a database [POST]
++ Request (application/json)
+
+    ```
+    {
+      "servings": 4,
+      "subtitle": "Delicious with fresh bread",
+      "title": "Fish Stew"
+    }
+    ```
+
++ Response 201 (application/json)
+
+  + Headers
+
+        ```
+        ETag: "1-9c65296036141e575d32ba9c034dd3ee"
+        Location: http://localhost:5984/db/ab39fe0993049b84cfa81acd6ebad09d
+        ```
+
+  + Body
+    ```
+    {
+      "id": "ab39fe0993049b84cfa81acd6ebad09d",
+      "ok": true,
+      "rev": "1-9c65296036141e575d32ba9c034dd3ee"
+    }
+    ```
+
 ## Documents [/{db}/{doc_id}]
 
 Retrieve a document.
