@@ -101,12 +101,31 @@ Get database metadata.
     ```
     {"db_name":"example","doc_count":0,"doc_del_count":0,"update_seq":0,"purge_seq":0,"compact_running":false,"disk_size":79,"data_size":0,"instance_start_time":"1379015586374134","disk_format_version":6,"committed_update_seq":0}
     ```
++ Response 404
 
 ### Create a database [PUT]
 + Response 201 (application/json)
 
     ```
     { "ok": true }
+    ```
++ Response 400 (application/json)
+  
+    ```
+    {
+      "error": "illegal_database_name",
+      "reason": "Name: '_db'. Only lowercase characters (a-z), digits (0-9), and any of the characters _, $, (, ), +, -, and / are allowed. Must begin with a letter."
+    }
+    ```
+
++ Response 401
++ Response 412
+
+    ```
+    {
+      "error": "file_exists",
+      "reason": "The database could not be created, the file already exists."
+    }
     ```
 
 ### Delete a database [DELETE]
